@@ -10,5 +10,5 @@
     <color name="textview_rect">#4799E8</color>
     <color name="textview_gradient_start">#C8C8C8</color>
     <color name="operation_background">#FFA500</color>
-    <color name="black95">#FF000000</color>
+    <color name="black95">#95000000</color>
 </resources>
