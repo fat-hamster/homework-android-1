@@ -18,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
         2 - minus
         3 - multiply
         4 - divide
+        5 - percent
      */
 
     @Override
@@ -53,64 +54,71 @@ public class MainActivity extends AppCompatActivity {
 
         ac.setOnClickListener(v -> acOperation());
         seven.setOnClickListener(v -> {
-            if("0".equals(display.getText())) {
+            if("0".equals(display.getText().toString())) {
                 display.setText("");
             }
             display.append("7");
         });
         eight.setOnClickListener(v -> {
-            if("0".equals(display.getText())) {
+            if("0".equals(display.getText().toString())) {
                 display.setText("");
             }
             display.append("8");
         });
         nine.setOnClickListener(v -> {
-            if("0".equals(display.getText())) {
+            if("0".equals(display.getText().toString())) {
                 display.setText("");
             }
             display.append("9");
         });
         four.setOnClickListener(v -> {
-            if("0".equals(display.getText())) {
+            if("0".equals(display.getText().toString())) {
                 display.setText("");
             }
             display.append("4");
         });
         five.setOnClickListener(v -> {
-            if("0".equals(display.getText())) {
+            if("0".equals(display.getText().toString())) {
                 display.setText("");
             }
             display.append("5");
         });
         six.setOnClickListener(v -> {
-            if("0".equals(display.getText())) {
+            if("0".equals(display.getText().toString())) {
                 display.setText("");
             }
             display.append("6");
         });
         one.setOnClickListener(v -> {
-            if("0".equals(display.getText())) {
+            if("0".equals(display.getText().toString())) {
                 display.setText("");
             }
             display.append("1");
         });
         two.setOnClickListener(v -> {
-            if("0".equals(display.getText())) {
+            if("0".equals(display.getText().toString())) {
                 display.setText("");
             }
             display.append("2");
         });
         three.setOnClickListener(v -> {
-            if("0".equals(display.getText())) {
+            if("0".equals(display.getText().toString())) {
                 display.setText("");
             }
             display.append("3");
         });
         zero.setOnClickListener(v -> {
-            if("0".equals(display.getText())) {
+            if("0".equals(display.getText().toString())) {
                 return;
             }
             display.append("0");
+        });
+
+        comma.setOnClickListener(v -> {
+            if(display.getText().toString().contains(".")) {
+                return;
+            }
+            display.append(".");
         });
 
         negativeSwitch.setOnClickListener(v -> negativeSwitch());
@@ -119,6 +127,7 @@ public class MainActivity extends AppCompatActivity {
         multiply.setOnClickListener(v -> multiply());
         divide.setOnClickListener(v -> divide());
         equal.setOnClickListener(v -> calculate());
+        percent.setOnClickListener(v -> percent());
     }
 
     private void acOperation() {
@@ -189,6 +198,15 @@ public class MainActivity extends AppCompatActivity {
         display.setText("0");
     }
 
+    private void percent() {
+        if(operation != 0) {
+            return;
+        }
+        operand1 = parseString(display.getText().toString());
+        operation = 5;
+        display.setText("0");
+    }
+
     private void calculate() {
         if(operation == 0) {
             return;
@@ -199,6 +217,7 @@ public class MainActivity extends AppCompatActivity {
             case 2: minusOperation(); break;
             case 3: multiplyOperation(); break;
             case 4: divideOperation(); break;
+            case 5: percentOperation(); break;
         }
         operation = 0;
         operand1 = null;
@@ -207,19 +226,51 @@ public class MainActivity extends AppCompatActivity {
 
     private void plusOperation() {
         Double res = operand1 + operand2;
-        
-        display.setText(String.valueOf(res));
+        String[] val = String.valueOf(res).split("\\.");
+        if(val[1].length() == 1 && "0".equals(val[1])) {
+            display.setText(val[0]);
+        } else {
+            display.setText(String.valueOf(res));
+        }
     }
 
     private void minusOperation() {
-        display.setText(String.valueOf(operand1-operand2));
+        Double res = operand1 - operand2;
+        String[] val = String.valueOf(res).split("\\.");
+        if(val[1].length() == 1 && "0".equals(val[1])) {
+            display.setText(val[0]);
+        } else {
+            display.setText(String.valueOf(res));
+        }
     }
 
     private void multiplyOperation() {
-        display.setText(String.valueOf(operand1*operand2));
+        Double res = operand1 * operand2;
+        String[] val = String.valueOf(res).split("\\.");
+        if(val[1].length() == 1 && "0".equals(val[1])) {
+            display.setText(val[0]);
+        } else {
+            display.setText(String.valueOf(res));
+        }
     }
 
     private void divideOperation() {
-        display.setText(String.valueOf(operand1/operand2));
+        Double res = operand1 / operand2;
+        String[] val = String.valueOf(res).split("\\.");
+        if(val[1].length() == 1 && "0".equals(val[1])) {
+            display.setText(val[0]);
+        } else {
+            display.setText(String.valueOf(res));
+        }
+    }
+
+    private void percentOperation() {
+        Double res = operand1 * (operand2 / 100);
+        String[] val = String.valueOf(res).split("\\.");
+        if(val[1].length() == 1 && "0".equals(val[1])) {
+            display.setText(val[0]);
+        } else {
+            display.setText(String.valueOf(res));
+        }
     }
 }
