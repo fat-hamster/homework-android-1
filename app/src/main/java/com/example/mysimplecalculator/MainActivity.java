@@ -7,17 +7,23 @@ import android.widget.Button;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
-    private Double operand1;
-    private Double operand2;
+    private Double operand1 = null;
+    private Double operand2 = null;
+    private int operation = 0;
     private TextView display;
+    private Boolean negative = false;
+
+    /* Code operations
+        1 - plus
+        2 - minus
+        3 - multiply
+        4 - divide
+     */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        operand1 = null;
-        operand2 = null;
 
         display = findViewById(R.id.textView);
 
@@ -47,70 +53,173 @@ public class MainActivity extends AppCompatActivity {
 
         ac.setOnClickListener(v -> acOperation());
         seven.setOnClickListener(v -> {
-            if(display.getText().length() == 1 && "0".equals(display.getText())) {
+            if("0".equals(display.getText())) {
                 display.setText("");
             }
             display.append("7");
         });
         eight.setOnClickListener(v -> {
-            if(display.getText().length() == 1 && "0".equals(display.getText())) {
+            if("0".equals(display.getText())) {
                 display.setText("");
             }
             display.append("8");
         });
         nine.setOnClickListener(v -> {
-            if(display.getText().length() == 1 && "0".equals(display.getText())) {
+            if("0".equals(display.getText())) {
                 display.setText("");
             }
             display.append("9");
         });
         four.setOnClickListener(v -> {
-            if(display.getText().length() == 1 && "0".equals(display.getText())) {
+            if("0".equals(display.getText())) {
                 display.setText("");
             }
             display.append("4");
         });
         five.setOnClickListener(v -> {
-            if(display.getText().length() == 1 && "0".equals(display.getText())) {
+            if("0".equals(display.getText())) {
                 display.setText("");
             }
             display.append("5");
         });
         six.setOnClickListener(v -> {
-            if(display.getText().length() == 1 && "0".equals(display.getText())) {
+            if("0".equals(display.getText())) {
                 display.setText("");
             }
             display.append("6");
         });
         one.setOnClickListener(v -> {
-            if(display.getText().length() == 1 && "0".equals(display.getText())) {
+            if("0".equals(display.getText())) {
                 display.setText("");
             }
             display.append("1");
         });
         two.setOnClickListener(v -> {
-            if(display.getText().length() == 1 && "0".equals(display.getText())) {
+            if("0".equals(display.getText())) {
                 display.setText("");
             }
             display.append("2");
         });
         three.setOnClickListener(v -> {
-            if(display.getText().length() == 1 && "0".equals(display.getText())) {
+            if("0".equals(display.getText())) {
                 display.setText("");
             }
             display.append("3");
         });
         zero.setOnClickListener(v -> {
-            if(display.getText().length() == 1 && "0".equals(display.getText())) {
+            if("0".equals(display.getText())) {
                 return;
             }
             display.append("0");
         });
+
+        negativeSwitch.setOnClickListener(v -> negativeSwitch());
+        plus.setOnClickListener(v -> plus());
+        minus.setOnClickListener(v -> minus());
+        multiply.setOnClickListener(v -> multiply());
+        divide.setOnClickListener(v -> divide());
+        equal.setOnClickListener(v -> calculate());
     }
 
     private void acOperation() {
         operand1 = null;
         operand2 = null;
+        negative = false;
+        operation = 0;
         display.setText("0");
+    }
+
+    private void negativeSwitch() {
+        if("0".equals(display.getText())) {
+            return;
+        }
+        negative = !negative;
+        String val = display.getText().toString();
+        if(negative) {
+            display.setText("-");
+            display.append(val);
+        } else {
+            display.setText(val.substring(1));
+        }
+    }
+
+    private Double parseString(String val) {
+        Double res = null;
+        try {
+            res = Double.parseDouble(val);
+        } catch (ArithmeticException e) {
+            // :(
+        }
+        return res;
+    }
+
+    private void plus() {
+        if(operation != 0) {
+            return;
+        }
+        operand1 = parseString(display.getText().toString());
+        operation = 1;
+        display.setText("0");
+    }
+
+    private void minus() {
+        if(operation != 0) {
+            return;
+        }
+        operand1 = parseString(display.getText().toString());
+        operation = 2;
+        display.setText("0");
+    }
+
+    private void multiply() {
+        if(operation != 0) {
+            return;
+        }
+        operand1 = parseString(display.getText().toString());
+        operation = 3;
+        display.setText("0");
+    }
+
+    private void divide() {
+        if(operation != 0) {
+            return;
+        }
+        operand1 = parseString(display.getText().toString());
+        operation = 4;
+        display.setText("0");
+    }
+
+    private void calculate() {
+        if(operation == 0) {
+            return;
+        }
+        operand2 = parseString(display.getText().toString());
+        switch (operation) {
+            case 1: plusOperation(); break;
+            case 2: minusOperation(); break;
+            case 3: multiplyOperation(); break;
+            case 4: divideOperation(); break;
+        }
+        operation = 0;
+        operand1 = null;
+        operand2 = null;
+    }
+
+    private void plusOperation() {
+        Double res = operand1 + operand2;
+        
+        display.setText(String.valueOf(res));
+    }
+
+    private void minusOperation() {
+        display.setText(String.valueOf(operand1-operand2));
+    }
+
+    private void multiplyOperation() {
+        display.setText(String.valueOf(operand1*operand2));
+    }
+
+    private void divideOperation() {
+        display.setText(String.valueOf(operand1/operand2));
     }
 }
