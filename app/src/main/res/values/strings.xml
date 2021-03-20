@@ -10,4 +10,6 @@
     <string name="person_name">Person Name text field</string>
     <string name="time_text">Time text field</string>
     <string name="next_activity">Next activity</string>
+    <string name="calendar">Calendar</string>
+    <string name="back">Back</string>
 </resources>

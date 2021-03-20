@@ -16,5 +16,11 @@ public class NextActivity extends Activity {
             Intent intent = new Intent(NextActivity.this, MainActivity.class);
             startActivity(intent);
         });
+
+        Button calendarButton = findViewById(R.id.calendarButton);
+        calendarButton.setOnClickListener(v -> {
+            Intent intent = new Intent(NextActivity.this, CalendarActivity.class);
+            startActivity(intent);
+        });
     }
 }

@@ -19,6 +19,9 @@
         <activity android:name=".NextActivity"
             android:label="@string/next_activity">
         </activity>
+        <activity android:name=".CalendarActivity"
+            android:label="Calendar activity">
+        </activity>
     </application>
 
 </manifest>
