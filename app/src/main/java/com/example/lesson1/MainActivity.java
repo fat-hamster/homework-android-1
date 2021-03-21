@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
         buttonNext.setOnClickListener(v -> {
             try {
                 Intent intent = new Intent(MainActivity.this, NextActivity.class);
-                startActivity(intent);
+                startActivity(intent); finish();
             } catch (Exception ignore) { // здесь наверное вот это?: ActivityNotFoundException
 
             }

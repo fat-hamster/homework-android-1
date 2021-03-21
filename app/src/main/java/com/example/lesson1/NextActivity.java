@@ -15,7 +15,7 @@ public class NextActivity extends Activity {
         button.setOnClickListener(v -> {
             try {
                 Intent intent = new Intent(NextActivity.this, MainActivity.class);
-                startActivity(intent);
+                startActivity(intent); finish();
             } catch (Exception ignore) {
 
             }
@@ -25,7 +25,7 @@ public class NextActivity extends Activity {
         calendarButton.setOnClickListener(v -> {
             try {
                 Intent intent = new Intent(NextActivity.this, CalendarActivity.class);
-                startActivity(intent);
+                startActivity(intent); finish();
             } catch (Exception ignore) {
 
             }

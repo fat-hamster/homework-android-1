@@ -17,7 +17,7 @@ public class CalendarActivity extends Activity {
         back.setOnClickListener(v -> {
             try {
                 Intent intent = new Intent(CalendarActivity.this, NextActivity.class);
-                startActivity(intent);
+                startActivity(intent); finish();
             } catch (Exception ignore) {
 
             }
