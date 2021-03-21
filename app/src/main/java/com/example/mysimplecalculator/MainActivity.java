@@ -12,6 +12,7 @@ public class MainActivity extends AppCompatActivity {
     private int operation = 0;
     private TextView display;
     private Boolean negative = false;
+    private CalculatorCore calc = new CalculatorCore();
 
     /* Code operations
         1 - plus
@@ -131,6 +132,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void acOperation() {
+        if(null != operand1 && null == operand2) {
+            display.setText("0");
+            return;
+        }
+
+        calc.reset();
         operand1 = null;
         operand2 = null;
         negative = false;
@@ -169,6 +176,12 @@ public class MainActivity extends AppCompatActivity {
         operand1 = parseString(display.getText().toString());
         operation = 1;
         display.setText("0");
+
+        try {
+            calc.addNumber(Double.parseDouble(display.getText().toString()));
+        } catch (NumberFormatException e) {
+            // тут наверное нужна обработка
+        }
     }
 
     private void minus() {
@@ -178,6 +191,12 @@ public class MainActivity extends AppCompatActivity {
         operand1 = parseString(display.getText().toString());
         operation = 2;
         display.setText("0");
+
+        try {
+            calc.addNumber(Double.parseDouble(display.getText().toString()));
+        } catch (NumberFormatException e) {
+            // тут наверное нужна обработка
+        }
     }
 
     private void multiply() {
@@ -187,6 +206,12 @@ public class MainActivity extends AppCompatActivity {
         operand1 = parseString(display.getText().toString());
         operation = 3;
         display.setText("0");
+
+        try {
+            calc.addNumber(Double.parseDouble(display.getText().toString()));
+        } catch (NumberFormatException e) {
+            // тут наверное нужна обработка
+        }
     }
 
     private void divide() {
@@ -196,6 +221,12 @@ public class MainActivity extends AppCompatActivity {
         operand1 = parseString(display.getText().toString());
         operation = 4;
         display.setText("0");
+
+        try {
+            calc.addNumber(Double.parseDouble(display.getText().toString()));
+        } catch (NumberFormatException e) {
+            // тут наверное нужна обработка
+        }
     }
 
     private void percent() {
@@ -205,6 +236,12 @@ public class MainActivity extends AppCompatActivity {
         operand1 = parseString(display.getText().toString());
         operation = 5;
         display.setText("0");
+
+        try {
+            calc.addNumber(Double.parseDouble(display.getText().toString()));
+        } catch (NumberFormatException e) {
+            // тут наверное нужна обработка
+        }
     }
 
     private void calculate() {
@@ -212,6 +249,11 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
         operand2 = parseString(display.getText().toString());
+        try {
+            calc.addNumber(Double.parseDouble(display.getText().toString()));
+        } catch (NumberFormatException e) {
+            // тут наверное нужна обработка
+        }
         switch (operation) {
             case 1: plusOperation(); break;
             case 2: minusOperation(); break;
@@ -225,7 +267,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void plusOperation() {
-        Double res = operand1 + operand2;
+        Double res = calc.getResult(1); //operand1 + operand2;
+        if(res == null) {
+            display.setText("error");
+            return;
+        }
         String[] val = String.valueOf(res).split("\\.");
         if(val[1].length() == 1 && "0".equals(val[1])) {
             display.setText(val[0]);
@@ -235,7 +281,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void minusOperation() {
-        Double res = operand1 - operand2;
+        Double res = calc.getResult(2); //operand1 - operand2;
+        if(res == null) {
+            display.setText("error");
+            return;
+        }
         String[] val = String.valueOf(res).split("\\.");
         if(val[1].length() == 1 && "0".equals(val[1])) {
             display.setText(val[0]);
@@ -245,7 +295,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void multiplyOperation() {
-        Double res = operand1 * operand2;
+        Double res = calc.getResult(3);//operand1 * operand2;
+        if(res == null) {
+            display.setText("error");
+            return;
+        }
         String[] val = String.valueOf(res).split("\\.");
         if(val[1].length() == 1 && "0".equals(val[1])) {
             display.setText(val[0]);
@@ -255,7 +309,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void divideOperation() {
-        Double res = operand1 / operand2;
+        Double res = calc.getResult(4); //operand1 / operand2;
+        if(res == null) {
+            display.setText("error");
+            return;
+        }
         String[] val = String.valueOf(res).split("\\.");
         if(val[1].length() == 1 && "0".equals(val[1])) {
             display.setText(val[0]);
@@ -265,7 +323,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void percentOperation() {
-        Double res = operand1 * (operand2 / 100);
+        Double res = calc.getResult(5); //operand1 * (operand2 / 100);
+        if(res == null) {
+            display.setText("error");
+            return;
+        }
         String[] val = String.valueOf(res).split("\\.");
         if(val[1].length() == 1 && "0".equals(val[1])) {
             display.setText(val[0]);
