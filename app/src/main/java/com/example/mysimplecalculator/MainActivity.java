@@ -12,6 +12,7 @@ public class MainActivity extends AppCompatActivity {
     private int operation = 0;
     private TextView display;
     private Boolean negative = false;
+    private Boolean res = false;
     private CalculatorCore calc = new CalculatorCore();
 
     /* Code operations
@@ -55,68 +56,77 @@ public class MainActivity extends AppCompatActivity {
 
         ac.setOnClickListener(v -> acOperation());
         seven.setOnClickListener(v -> {
-            if("0".equals(display.getText().toString())) {
+            if("0".equals(display.getText().toString()) || res) {
                 display.setText("");
+                res = false;
             }
             display.append("7");
         });
         eight.setOnClickListener(v -> {
-            if("0".equals(display.getText().toString())) {
+            if("0".equals(display.getText().toString()) || res) {
                 display.setText("");
+                res = false;
             }
             display.append("8");
         });
         nine.setOnClickListener(v -> {
-            if("0".equals(display.getText().toString())) {
+            if("0".equals(display.getText().toString()) || res) {
                 display.setText("");
+                res = false;
             }
             display.append("9");
         });
         four.setOnClickListener(v -> {
-            if("0".equals(display.getText().toString())) {
+            if("0".equals(display.getText().toString()) || res) {
                 display.setText("");
+                res = false;
             }
             display.append("4");
         });
         five.setOnClickListener(v -> {
-            if("0".equals(display.getText().toString())) {
+            if("0".equals(display.getText().toString()) || res) {
                 display.setText("");
+                res = false;
             }
             display.append("5");
         });
         six.setOnClickListener(v -> {
-            if("0".equals(display.getText().toString())) {
+            if("0".equals(display.getText().toString()) || res) {
                 display.setText("");
+                res = false;
             }
             display.append("6");
         });
         one.setOnClickListener(v -> {
-            if("0".equals(display.getText().toString())) {
+            if("0".equals(display.getText().toString()) || res) {
                 display.setText("");
+                res = false;
             }
             display.append("1");
         });
         two.setOnClickListener(v -> {
-            if("0".equals(display.getText().toString())) {
+            if("0".equals(display.getText().toString()) || res) {
                 display.setText("");
+                res = false;
             }
             display.append("2");
         });
         three.setOnClickListener(v -> {
-            if("0".equals(display.getText().toString())) {
+            if("0".equals(display.getText().toString()) || res) {
                 display.setText("");
+                res = false;
             }
             display.append("3");
         });
         zero.setOnClickListener(v -> {
-            if("0".equals(display.getText().toString())) {
+            if("0".equals(display.getText().toString()) || res) {
                 return;
             }
             display.append("0");
         });
 
         comma.setOnClickListener(v -> {
-            if(display.getText().toString().contains(".")) {
+            if(display.getText().toString().contains(".") || res) {
                 return;
             }
             display.append(".");
@@ -141,6 +151,7 @@ public class MainActivity extends AppCompatActivity {
         //operand1 = null;
         //operand2 = null;
         negative = false;
+        res = false;
         operation = 0;
         display.setText("0");
     }
@@ -247,6 +258,8 @@ public class MainActivity extends AppCompatActivity {
             case 5: percentOperation(); break;
         }
         operation = 0;
+        res = true;
+        calc.reset();
         //operand1 = null;
         //operand2 = null;
     }

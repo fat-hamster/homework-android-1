@@ -44,37 +44,22 @@ public class CalculatorCore {
     }
 
     private Double sum() {
-        if (result == null) {
-            return operand1 + operand2;
-        }
-        return result + operand2;
+        return operand1 + operand2;
     }
 
     private Double sub() {
-        if (result == null) {
-            return operand1 - operand2;
-        }
-        return result - operand2;
+        return operand1 - operand2;
     }
 
     private Double mult() {
-        if (result == null) {
-            return operand1 * operand2;
-        }
-        return result * operand2;
+        return operand1 * operand2;
     }
 
     private Double div() {
-        if (result == null) {
-            return operand1 / operand2;
-        }
-        return result / operand2;
+        return operand1 / operand2;
     }
 
     private Double percent() {
-        if (result == null) {
-            return operand1 * (operand2 / 100);
-        }
-        return result * (operand2 / 100);
+        return operand1 * (operand2 / 100);
     }
 }
