@@ -6,7 +6,7 @@ public class CalculatorCore {
     private Double result;
     private Boolean start;
 
-    public void CalculatorCore() {
+    public CalculatorCore() {
         operand1 = null;
         operand2 = null;
         result = null;

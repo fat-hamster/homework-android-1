@@ -7,8 +7,8 @@ import android.widget.Button;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
-    private Double operand1 = null;
-    private Double operand2 = null;
+    //private Double operand1 = null;
+    //private Double operand2 = null;
     private int operation = 0;
     private TextView display;
     private Boolean negative = false;
@@ -132,14 +132,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void acOperation() {
-        if(null != operand1 && null == operand2) {
+        /*if(null != operand1 && null == operand2) {
             display.setText("0");
             return;
-        }
+        }*/
 
         calc.reset();
-        operand1 = null;
-        operand2 = null;
+        //operand1 = null;
+        //operand2 = null;
         negative = false;
         operation = 0;
         display.setText("0");
@@ -173,82 +173,67 @@ public class MainActivity extends AppCompatActivity {
         if(operation != 0) {
             return;
         }
-        operand1 = parseString(display.getText().toString());
+        //operand1 = parseString(display.getText().toString());
+
+        calc.addNumber(parseString(display.getText().toString()));
+
         operation = 1;
         display.setText("0");
-
-        try {
-            calc.addNumber(Double.parseDouble(display.getText().toString()));
-        } catch (NumberFormatException e) {
-            // тут наверное нужна обработка
-        }
     }
 
     private void minus() {
         if(operation != 0) {
             return;
         }
-        operand1 = parseString(display.getText().toString());
+        //operand1 = parseString(display.getText().toString());
+
+        calc.addNumber(parseString(display.getText().toString()));
+
         operation = 2;
         display.setText("0");
-
-        try {
-            calc.addNumber(Double.parseDouble(display.getText().toString()));
-        } catch (NumberFormatException e) {
-            // тут наверное нужна обработка
-        }
     }
 
     private void multiply() {
         if(operation != 0) {
             return;
         }
-        operand1 = parseString(display.getText().toString());
+        //operand1 = parseString(display.getText().toString());
+
+        calc.addNumber(parseString(display.getText().toString()));
+
         operation = 3;
         display.setText("0");
-
-        try {
-            calc.addNumber(Double.parseDouble(display.getText().toString()));
-        } catch (NumberFormatException e) {
-            // тут наверное нужна обработка
-        }
     }
 
     private void divide() {
         if(operation != 0) {
             return;
         }
-        operand1 = parseString(display.getText().toString());
+        //operand1 = parseString(display.getText().toString());
+
+        calc.addNumber(parseString(display.getText().toString()));
+
         operation = 4;
         display.setText("0");
-
-        try {
-            calc.addNumber(Double.parseDouble(display.getText().toString()));
-        } catch (NumberFormatException e) {
-            // тут наверное нужна обработка
-        }
     }
 
     private void percent() {
         if(operation != 0) {
             return;
         }
-        operand1 = parseString(display.getText().toString());
+        //operand1 = parseString(display.getText().toString());
+
+        calc.addNumber(parseString(display.getText().toString()));
+
         operation = 5;
         display.setText("0");
-
-        try {
-            calc.addNumber(Double.parseDouble(display.getText().toString()));
-        } catch (NumberFormatException e) {
-            // тут наверное нужна обработка
-        }
     }
 
     private void calculate() {
         if(operation == 0) {
             return;
         }
-        operand2 = parseString(display.getText().toString());
+        //operand2 = parseString(display.getText().toString());
         try {
             calc.addNumber(Double.parseDouble(display.getText().toString()));
         } catch (NumberFormatException e) {
@@ -262,8 +247,8 @@ public class MainActivity extends AppCompatActivity {
             case 5: percentOperation(); break;
         }
         operation = 0;
-        operand1 = null;
-        operand2 = null;
+        //operand1 = null;
+        //operand2 = null;
     }
 
     private void plusOperation() {
