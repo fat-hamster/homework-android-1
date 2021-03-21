@@ -13,14 +13,22 @@ public class NextActivity extends Activity {
 
         Button button = findViewById(R.id.button2);
         button.setOnClickListener(v -> {
-            Intent intent = new Intent(NextActivity.this, MainActivity.class);
-            startActivity(intent);
+            try {
+                Intent intent = new Intent(NextActivity.this, MainActivity.class);
+                startActivity(intent);
+            } catch (Exception ignore) {
+
+            }
         });
 
         Button calendarButton = findViewById(R.id.calendarButton);
         calendarButton.setOnClickListener(v -> {
-            Intent intent = new Intent(NextActivity.this, CalendarActivity.class);
-            startActivity(intent);
+            try {
+                Intent intent = new Intent(NextActivity.this, CalendarActivity.class);
+                startActivity(intent);
+            } catch (Exception ignore) {
+
+            }
         });
     }
 }

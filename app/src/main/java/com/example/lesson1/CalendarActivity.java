@@ -15,8 +15,12 @@ public class CalendarActivity extends Activity {
 
         Button back = findViewById(R.id.backButtonCalendar);
         back.setOnClickListener(v -> {
-            Intent intent = new Intent(CalendarActivity.this, NextActivity.class);
-            startActivity(intent);
+            try {
+                Intent intent = new Intent(CalendarActivity.this, NextActivity.class);
+                startActivity(intent);
+            } catch (Exception ignore) {
+
+            }
         });
     }
 }

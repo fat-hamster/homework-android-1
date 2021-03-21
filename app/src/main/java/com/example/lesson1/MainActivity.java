@@ -20,8 +20,12 @@ public class MainActivity extends AppCompatActivity {
 
         Button buttonNext = findViewById(R.id.next);
         buttonNext.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, NextActivity.class);
-            startActivity(intent);
+            try {
+                Intent intent = new Intent(MainActivity.this, NextActivity.class);
+                startActivity(intent);
+            } catch (Exception ignore) { // здесь наверное вот это?: ActivityNotFoundException
+
+            }
         });
     }
 }
