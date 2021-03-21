@@ -49,6 +49,7 @@
                 android:layout_marginRight="10dp"
                 android:layout_weight="1"
                 android:text="@string/ac"
+                android:backgroundTint="@color/dark_gray"
                 android:textSize="24dp" />
 
             <Button
@@ -58,6 +59,7 @@
                 android:layout_marginRight="10dp"
                 android:layout_weight="1"
                 android:text="@string/min_plus"
+                android:backgroundTint="@color/dark_gray"
                 android:textSize="24dp" />
 
             <Button
@@ -67,6 +69,7 @@
                 android:layout_marginRight="10dp"
                 android:layout_weight="1"
                 android:text="@string/percent"
+                android:backgroundTint="@color/dark_gray"
                 android:textSize="24dp" />
 
             <Button
@@ -75,6 +78,7 @@
                 android:layout_height="68dp"
                 android:layout_weight="1"
                 android:text="@string/divide"
+                android:backgroundTint="@color/operation_background"
                 android:textSize="24dp" />
         </LinearLayout>
 
@@ -94,6 +98,7 @@
                 android:layout_marginRight="10dp"
                 android:layout_weight="1"
                 android:text="@string/_7"
+                android:backgroundTint="@color/gray"
                 android:textSize="24sp" />
 
             <Button
@@ -103,6 +108,7 @@
                 android:layout_marginRight="10dp"
                 android:layout_weight="1"
                 android:text="@string/_8"
+                android:backgroundTint="@color/gray"
                 android:textSize="24sp" />
 
             <Button
@@ -112,6 +118,7 @@
                 android:layout_marginRight="10dp"
                 android:layout_weight="1"
                 android:text="@string/_9"
+                android:backgroundTint="@color/gray"
                 android:textSize="24sp" />
 
             <Button
@@ -121,6 +128,7 @@
                 android:layout_weight="1"
                 android:background="@color/operation_background"
                 android:text="@string/multiply"
+                android:backgroundTint="@color/operation_background"
                 android:textSize="24sp" />
         </LinearLayout>
 
@@ -141,6 +149,7 @@
                 android:layout_marginRight="10dp"
                 android:layout_weight="1"
                 android:text="@string/_4"
+                android:backgroundTint="@color/gray"
                 android:textSize="24sp" />
 
             <Button
@@ -150,6 +159,7 @@
                 android:layout_marginRight="10dp"
                 android:layout_weight="1"
                 android:text="@string/_5"
+                android:backgroundTint="@color/gray"
                 android:textSize="24sp" />
 
             <Button
@@ -159,6 +169,7 @@
                 android:layout_marginRight="10dp"
                 android:layout_weight="1"
                 android:text="@string/_6"
+                android:backgroundTint="@color/gray"
                 android:textSize="24sp" />
 
             <Button
@@ -168,6 +179,7 @@
                 android:layout_weight="1"
                 android:background="@color/operation_background"
                 android:text="@string/minus"
+                android:backgroundTint="@color/operation_background"
                 android:textSize="24sp" />
         </LinearLayout>
 
@@ -188,6 +200,7 @@
                 android:layout_marginRight="10dp"
                 android:layout_weight="1"
                 android:text="@string/_1"
+                android:backgroundTint="@color/gray"
                 android:textSize="24sp" />
 
             <Button
@@ -197,6 +210,7 @@
                 android:layout_marginRight="10dp"
                 android:layout_weight="1"
                 android:text="@string/_2"
+                android:backgroundTint="@color/gray"
                 android:textSize="24sp" />
 
             <Button
@@ -206,6 +220,7 @@
                 android:layout_marginRight="10dp"
                 android:layout_weight="1"
                 android:text="@string/_3"
+                android:backgroundTint="@color/gray"
                 android:textSize="24sp" />
 
             <Button
@@ -215,6 +230,7 @@
                 android:layout_weight="1"
                 android:background="@color/operation_background"
                 android:text="@string/plus"
+                android:backgroundTint="@color/operation_background"
                 android:textSize="24sp" />
         </LinearLayout>
 
@@ -224,36 +240,43 @@
             android:layout_height="match_parent"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:layout_weight="1"
             android:gravity="center_horizontal"
             android:orientation="horizontal">
-
             <Button
                 android:id="@+id/_0"
                 android:layout_width="wrap_content"
                 android:layout_height="68dp"
+                android:layout_weight="1"
                 android:layout_marginRight="10dp"
-                android:layout_weight="30"
                 android:text="@string/_0"
+                android:backgroundTint="@color/gray"
                 android:textSize="24sp" />
 
-            <Button
-                android:id="@+id/comma"
+            <LinearLayout
+                android:id="@+id/fifth2_button_layout"
                 android:layout_width="wrap_content"
-                android:layout_height="68dp"
-                android:layout_marginRight="10dp"
-                android:layout_weight="1"
-                android:text="@string/comma"
-                android:textSize="24sp" />
+                android:layout_height="match_parent"
+                android:layout_gravity="right"
+                android:orientation="horizontal">
 
-            <Button
-                android:id="@+id/equal"
-                android:layout_width="wrap_content"
-                android:layout_height="68dp"
-                android:layout_weight="1"
-                android:background="@color/operation_background"
-                android:text="@string/equal"
-                android:textSize="24sp" />
+                <Button
+                    android:id="@+id/comma"
+                    android:layout_width="wrap_content"
+                    android:layout_height="68dp"
+                    android:layout_marginRight="10dp"
+                    android:text="@string/comma"
+                    android:backgroundTint="@color/gray"
+                    android:textSize="24sp" />
+
+                <Button
+                    android:id="@+id/equal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="68dp"
+                    android:text="@string/equal"
+                    android:backgroundTint="@color/operation_background"
+                    android:textSize="24sp" />
+            </LinearLayout>
+
         </LinearLayout>
 
     </LinearLayout>
