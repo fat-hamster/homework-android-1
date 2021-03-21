@@ -23,4 +23,15 @@ public class CalendarActivity extends Activity {
             }
         });
     }
+
+    // обработка системной кнопки "назад"
+    @Override
+    public void onBackPressed() {
+        try {
+            Intent intent = new Intent(CalendarActivity.this, NextActivity.class);
+            startActivity(intent); finish();
+        } catch (Exception ignore) {
+
+        }
+    }
 }

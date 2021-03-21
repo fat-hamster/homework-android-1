@@ -31,4 +31,15 @@ public class NextActivity extends Activity {
             }
         });
     }
+
+    // обработка системной кнопки "назад"
+    @Override
+    public void onBackPressed() {
+        try {
+            Intent intent = new Intent(NextActivity.this, MainActivity.class);
+            startActivity(intent); finish();
+        } catch (Exception ignore) {
+
+        }
+    }
 }
