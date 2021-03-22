@@ -7,8 +7,6 @@ import android.widget.Button;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
-    //private Double operand1 = null;
-    //private Double operand2 = null;
     private int operation = 0;
     private TextView display;
     private Boolean negative = false;
@@ -56,77 +54,77 @@ public class MainActivity extends AppCompatActivity {
 
         ac.setOnClickListener(v -> acOperation());
         seven.setOnClickListener(v -> {
-            if("0".equals(display.getText().toString()) || res) {
+            if ("0".equals(display.getText().toString()) || res) {
                 display.setText("");
                 res = false;
             }
             display.append("7");
         });
         eight.setOnClickListener(v -> {
-            if("0".equals(display.getText().toString()) || res) {
+            if ("0".equals(display.getText().toString()) || res) {
                 display.setText("");
                 res = false;
             }
             display.append("8");
         });
         nine.setOnClickListener(v -> {
-            if("0".equals(display.getText().toString()) || res) {
+            if ("0".equals(display.getText().toString()) || res) {
                 display.setText("");
                 res = false;
             }
             display.append("9");
         });
         four.setOnClickListener(v -> {
-            if("0".equals(display.getText().toString()) || res) {
+            if ("0".equals(display.getText().toString()) || res) {
                 display.setText("");
                 res = false;
             }
             display.append("4");
         });
         five.setOnClickListener(v -> {
-            if("0".equals(display.getText().toString()) || res) {
+            if ("0".equals(display.getText().toString()) || res) {
                 display.setText("");
                 res = false;
             }
             display.append("5");
         });
         six.setOnClickListener(v -> {
-            if("0".equals(display.getText().toString()) || res) {
+            if ("0".equals(display.getText().toString()) || res) {
                 display.setText("");
                 res = false;
             }
             display.append("6");
         });
         one.setOnClickListener(v -> {
-            if("0".equals(display.getText().toString()) || res) {
+            if ("0".equals(display.getText().toString()) || res) {
                 display.setText("");
                 res = false;
             }
             display.append("1");
         });
         two.setOnClickListener(v -> {
-            if("0".equals(display.getText().toString()) || res) {
+            if ("0".equals(display.getText().toString()) || res) {
                 display.setText("");
                 res = false;
             }
             display.append("2");
         });
         three.setOnClickListener(v -> {
-            if("0".equals(display.getText().toString()) || res) {
+            if ("0".equals(display.getText().toString()) || res) {
                 display.setText("");
                 res = false;
             }
             display.append("3");
         });
         zero.setOnClickListener(v -> {
-            if("0".equals(display.getText().toString()) || res) {
+            if ("0".equals(display.getText().toString()) || res) {
                 return;
             }
             display.append("0");
         });
 
         comma.setOnClickListener(v -> {
-            if(display.getText().toString().contains(".") || res) {
+            if (display.getText().toString().contains(".") || res) {
                 return;
             }
             display.append(".");
@@ -142,14 +140,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void acOperation() {
-        /*if(null != operand1 && null == operand2) {
-            display.setText("0");
-            return;
-        }*/
-
         calc.reset();
-        //operand1 = null;
-        //operand2 = null;
         negative = false;
         res = false;
         operation = 0;
@@ -157,12 +148,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void negativeSwitch() {
-        if("0".equals(display.getText())) {
+        if ("0".equals(display.getText())) {
             return;
         }
         negative = !negative;
         String val = display.getText().toString();
-        if(negative) {
+        if (negative) {
             display.setText("-");
             display.append(val);
         } else {
@@ -175,159 +166,84 @@ public class MainActivity extends AppCompatActivity {
         try {
             res = Double.parseDouble(val);
         } catch (ArithmeticException e) {
-            // :(
+            // добавлю чуть позже
         }
         return res;
     }
 
     private void plus() {
-        if(operation != 0) {
+        if (operation != 0) {
             return;
         }
-        //operand1 = parseString(display.getText().toString());
-
         calc.addNumber(parseString(display.getText().toString()));
-
         operation = 1;
         display.setText("0");
     }
 
     private void minus() {
-        if(operation != 0) {
+        if (operation != 0) {
             return;
         }
-        //operand1 = parseString(display.getText().toString());
-
         calc.addNumber(parseString(display.getText().toString()));
-
         operation = 2;
         display.setText("0");
     }
 
     private void multiply() {
-        if(operation != 0) {
+        if (operation != 0) {
             return;
         }
-        //operand1 = parseString(display.getText().toString());
-
         calc.addNumber(parseString(display.getText().toString()));
-
         operation = 3;
         display.setText("0");
     }
 
     private void divide() {
-        if(operation != 0) {
+        if (operation != 0) {
             return;
         }
-        //operand1 = parseString(display.getText().toString());
-
         calc.addNumber(parseString(display.getText().toString()));
-
         operation = 4;
         display.setText("0");
     }
 
     private void percent() {
-        if(operation != 0) {
+        if (operation != 0) {
             return;
         }
-        //operand1 = parseString(display.getText().toString());
-
         calc.addNumber(parseString(display.getText().toString()));
-
         operation = 5;
         display.setText("0");
     }
 
     private void calculate() {
-        if(operation == 0) {
+        if (operation == 0) {
             return;
         }
-        //operand2 = parseString(display.getText().toString());
         try {
             calc.addNumber(Double.parseDouble(display.getText().toString()));
         } catch (NumberFormatException e) {
-            // тут наверное нужна обработка
+            // тут наверное нужна обработка. добавлю чуть позже вывод в лог
         }
         switch (operation) {
-            case 1: plusOperation(); break;
-            case 2: minusOperation(); break;
-            case 3: multiplyOperation(); break;
-            case 4: divideOperation(); break;
-            case 5: percentOperation(); break;
+            case 1: displayResult(calc.getResult(1)); break;
+            case 2: displayResult(calc.getResult(2)); break;
+            case 3: displayResult(calc.getResult(3)); break;
+            case 4: displayResult(calc.getResult(4)); break;
+            case 5: displayResult(calc.getResult(5)); break;
         }
         operation = 0;
         res = true;
         calc.reset();
-        //operand1 = null;
-        //operand2 = null;
     }
 
-    private void plusOperation() {
-        Double res = calc.getResult(1); //operand1 + operand2;
-        if(res == null) {
+    private void displayResult(Double res) {
+        if (res == null) {
             display.setText("error");
             return;
         }
         String[] val = String.valueOf(res).split("\\.");
-        if(val[1].length() == 1 && "0".equals(val[1])) {
-            display.setText(val[0]);
-        } else {
-            display.setText(String.valueOf(res));
-        }
-    }
-
-    private void minusOperation() {
-        Double res = calc.getResult(2); //operand1 - operand2;
-        if(res == null) {
-            display.setText("error");
-            return;
-        }
-        String[] val = String.valueOf(res).split("\\.");
-        if(val[1].length() == 1 && "0".equals(val[1])) {
-            display.setText(val[0]);
-        } else {
-            display.setText(String.valueOf(res));
-        }
-    }
-
-    private void multiplyOperation() {
-        Double res = calc.getResult(3);//operand1 * operand2;
-        if(res == null) {
-            display.setText("error");
-            return;
-        }
-        String[] val = String.valueOf(res).split("\\.");
-        if(val[1].length() == 1 && "0".equals(val[1])) {
-            display.setText(val[0]);
-        } else {
-            display.setText(String.valueOf(res));
-        }
-    }
-
-    private void divideOperation() {
-        Double res = calc.getResult(4); //operand1 / operand2;
-        if(res == null) {
-            display.setText("error");
-            return;
-        }
-        String[] val = String.valueOf(res).split("\\.");
-        if(val[1].length() == 1 && "0".equals(val[1])) {
-            display.setText(val[0]);
-        } else {
-            display.setText(String.valueOf(res));
-        }
-    }
-
-    private void percentOperation() {
-        Double res = calc.getResult(5); //operand1 * (operand2 / 100);
-        if(res == null) {
-            display.setText("error");
-            return;
-        }
-        String[] val = String.valueOf(res).split("\\.");
-        if(val[1].length() == 1 && "0".equals(val[1])) {
+        if (val[1].length() == 1 && "0".equals(val[1])) {
             display.setText(val[0]);
         } else {
             display.setText(String.valueOf(res));
