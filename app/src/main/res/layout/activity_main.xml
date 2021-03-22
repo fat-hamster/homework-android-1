@@ -237,33 +237,35 @@
         <LinearLayout
             android:id="@+id/fifth_button_layout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="4"
             android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:gravity="center_horizontal"
             android:orientation="horizontal">
-            <Button
-                android:id="@+id/_0"
-                android:layout_width="wrap_content"
-                android:layout_height="68dp"
-                android:layout_weight="1"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginRight="10dp"
-                android:text="@string/_0"
-                android:backgroundTint="@color/gray"
-                android:textSize="24sp" />
+                android:layout_weight="2">
+                <Button
+                    android:id="@+id/_0"
+                    android:layout_width="match_parent"
+                    android:layout_height="68dp"
+                    android:text="@string/_0"
+                    android:backgroundTint="@color/gray"
+                    android:textSize="24sp" />
+            </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/fifth2_button_layout"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_gravity="right"
-                android:orientation="horizontal">
-
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:layout_weight="2">
                 <Button
                     android:id="@+id/comma"
                     android:layout_width="wrap_content"
                     android:layout_height="68dp"
                     android:layout_marginRight="10dp"
+                    android:layout_weight="1"
                     android:text="@string/comma"
                     android:backgroundTint="@color/gray"
                     android:textSize="24sp" />
@@ -272,11 +274,11 @@
                     android:id="@+id/equal"
                     android:layout_width="wrap_content"
                     android:layout_height="68dp"
+                    android:layout_weight="1"
                     android:text="@string/equal"
                     android:backgroundTint="@color/operation_background"
                     android:textSize="24sp" />
             </LinearLayout>
-
         </LinearLayout>
 
     </LinearLayout>
