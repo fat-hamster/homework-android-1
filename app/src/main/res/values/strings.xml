@@ -20,4 +20,6 @@
     <string name="_0">0</string>
     <string name="comma">,</string>
     <string name="equal">=</string>
+    <string name="error">error</string>
+    <string name="zero">0</string>
 </resources>

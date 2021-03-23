@@ -1,5 +1,6 @@
 package com.example.mysimplecalculator;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -7,11 +8,11 @@ import android.widget.Button;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
-    private int operation = 0;
     private TextView display;
     private Boolean negative = false;
     private Boolean res = false;
     private CalculatorCore calc = new CalculatorCore();
+    private final static String CalcValues = "CalcValues";
 
     /* Code operations
         1 - plus
@@ -139,16 +140,38 @@ public class MainActivity extends AppCompatActivity {
         percent.setOnClickListener(v -> percent());
     }
 
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle instanceState) {
+        super.onSaveInstanceState(instanceState);
+        instanceState.putParcelable(CalcValues, calc);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(@NonNull Bundle instanceState) {
+        super.onRestoreInstanceState(instanceState);
+        calc = instanceState.getParcelable(CalcValues);
+        restoreDisplay();
+    }
+
+    private void restoreDisplay() {
+        if(calc.getOperand2() != 0) {
+            displayResult(calc.getResult());
+            return;
+        }
+        if(calc.getOperand1() != 0 && calc.getOperation() == 0) {
+            display.setText(String.valueOf(calc.getOperand1()));
+        }
+    }
+
     private void acOperation() {
         calc.reset();
         negative = false;
         res = false;
-        operation = 0;
-        display.setText("0");
+        display.setText(R.string.zero);
     }
 
     private void negativeSwitch() {
-        if ("0".equals(display.getText())) {
+        if ("0".contentEquals(display.getText())) { //!!!! Проконтролировать !!!!
             return;
         }
         negative = !negative;
@@ -172,74 +195,65 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void plus() {
-        if (operation != 0) {
+        if (calc.getOperation() != 0) {
             return;
         }
         calc.addNumber(parseString(display.getText().toString()));
-        operation = 1;
-        display.setText("0");
+        calc.setOperation(1);
+        display.setText(R.string.zero);
     }
 
     private void minus() {
-        if (operation != 0) {
+        if (calc.getOperation() != 0) {
             return;
         }
         calc.addNumber(parseString(display.getText().toString()));
-        operation = 2;
-        display.setText("0");
+        calc.setOperation(2);
+        display.setText(R.string.zero);
     }
 
     private void multiply() {
-        if (operation != 0) {
+        if (calc.getOperation() != 0) {
             return;
         }
         calc.addNumber(parseString(display.getText().toString()));
-        operation = 3;
-        display.setText("0");
+        calc.setOperation(3);
+        display.setText(R.string.zero);
     }
 
     private void divide() {
-        if (operation != 0) {
+        if (calc.getOperation() != 0) {
             return;
         }
         calc.addNumber(parseString(display.getText().toString()));
-        operation = 4;
-        display.setText("0");
+        calc.setOperation(4);
+        display.setText(R.string.zero);
     }
 
     private void percent() {
-        if (operation != 0) {
+        if (calc.getOperation() != 0) {
             return;
         }
         calc.addNumber(parseString(display.getText().toString()));
-        operation = 5;
-        display.setText("0");
+        calc.setOperation(5);
+        display.setText(R.string.zero);
     }
 
     private void calculate() {
-        if (operation == 0) {
+        if (calc.getOperation() == 0) {
             return;
         }
-        try {
-            calc.addNumber(Double.parseDouble(display.getText().toString()));
-        } catch (NumberFormatException e) {
-            // тут наверное нужна обработка. добавлю чуть позже вывод в лог
-        }
-        switch (operation) {
-            case 1: displayResult(calc.getResult(1)); break;
-            case 2: displayResult(calc.getResult(2)); break;
-            case 3: displayResult(calc.getResult(3)); break;
-            case 4: displayResult(calc.getResult(4)); break;
-            case 5: displayResult(calc.getResult(5)); break;
-        }
-        operation = 0;
+        calc.addNumber(Double.parseDouble(display.getText().toString()));
+
+        displayResult(calc.getResult());
+
         res = true;
         calc.reset();
     }
 
     private void displayResult(Double res) {
         if (res == null) {
-            display.setText("error");
+            display.setText(R.string.error);
             return;
         }
         String[] val = String.valueOf(res).split("\\.");
