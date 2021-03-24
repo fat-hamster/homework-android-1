@@ -143,6 +143,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onSaveInstanceState(@NonNull Bundle instanceState) {
         super.onSaveInstanceState(instanceState);
+        if(calc.getOperation() == 0 && !"0".equals(display.getText().toString())) {
+            calc.addNumber(Double.parseDouble(display.getText().toString()));
+        }
         instanceState.putParcelable(CalcValues, calc);
     }
 
@@ -154,13 +157,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void restoreDisplay() {
-        if(calc.getOperand2() != 0) {
+        if(calc.getOperand2() != null) {
             displayResult(calc.getResult());
             return;
         }
-        if(calc.getOperand1() != 0 && calc.getOperation() == 0) {
-            display.setText(String.valueOf(calc.getOperand1()));
+        if(calc.getOperand1() != null && calc.getOperation() == 0) {
+            displayResult(calc.getOperand1());
+            return;
         }
+        display.setText("0");
     }
 
     private void acOperation() {
