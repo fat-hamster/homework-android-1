@@ -122,7 +122,7 @@
                 android:textSize="24sp" />
 
             <Button
-                android:id="@+id/mult"
+                android:id="@+id/multiply"
                 android:layout_width="wrap_content"
                 android:layout_height="80dp"
                 android:layout_weight="1"

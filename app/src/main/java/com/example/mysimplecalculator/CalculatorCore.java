@@ -2,6 +2,7 @@ package com.example.mysimplecalculator;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.util.Log;
 
 public class CalculatorCore implements Parcelable {
     private Double operand1;
@@ -19,17 +20,17 @@ public class CalculatorCore implements Parcelable {
     private CalculatorCore(Parcel in) {
         String[] data = new String[4];
         in.readStringArray(data);
-        if("null".equals(data[0])) {
+        if ("null".equals(data[0])) {
             result = null;
         } else {
             result = Double.parseDouble(data[0]);
         }
-        if("null".equals(data[1])) {
+        if ("null".equals(data[1])) {
             operand1 = null;
         } else {
             operand1 = Double.parseDouble(data[1]);
         }
-        if("null".equals(data[2])) {
+        if ("null".equals(data[2])) {
             operand2 = null;
         } else {
             operand2 = Double.parseDouble(data[2]);
@@ -74,33 +75,43 @@ public class CalculatorCore implements Parcelable {
 
     public Double getResult() {
         switch (operation) {
-            case 1: return sum();
-            case 2: return sub();
-            case 3: return mult();
-            case 4: return div();
-            case 5: return percent();
+            case 1:
+                return sum();
+            case 2:
+                return sub();
+            case 3:
+                return mult();
+            case 4:
+                return div();
+            case 5:
+                return percent();
         }
         return result;
     }
 
     private Double sum() {
-        return operand1 + operand2;
+        return (Double) (operand1 + operand2);
     }
 
     private Double sub() {
-        return operand1 - operand2;
+        return (Double) (operand1 - operand2);
     }
 
     private Double mult() {
-        return operand1 * operand2;
+        return (Double) (operand1 * operand2);
     }
 
     private Double div() {
-        return operand1 / operand2;
+        try {
+            return operand1 / operand2;
+        } catch (ArithmeticException e) {
+            Log.e(MainActivity.TAG, "Divide by zero");
+            return null;
+        }
     }
 
     private Double percent() {
-        return operand1 * (operand2 / 100);
+        return (Double) (operand1 * (operand2 / 100));
     }
 
     @Override
@@ -110,7 +121,7 @@ public class CalculatorCore implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeStringArray(new String[] {String.valueOf(result), String.valueOf(operand1),
+        dest.writeStringArray(new String[]{String.valueOf(result), String.valueOf(operand1),
                 String.valueOf(operand2), String.valueOf(operation)});
     }
 
